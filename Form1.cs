@@ -17,26 +17,22 @@ namespace Class3_WF
             InitializeComponent();
         }
            
-        int sum2 = 0;
+        decimal total = 0;
         private void btnAdicionar_Click_1(object sender, EventArgs e)
         {
             lstProduto.Items.Add(txtProduto.Text);
             lstPreco.Items.Add(txtPreco.Text);
-            int sum = int.Parse(txtPreco.Text);
-            sum2 += sum;
-
-            lblTotal.Text = $"Total: {sum2}";  
+            total += decimal.Parse(txtPreco.Text);
+            lblTotal.Text = $"Total R$: {total}";  
         }
-
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            int index = lstProduto.SelectedIndex;
+            var index = lstProduto.SelectedIndex;
             lstProduto.Items.RemoveAt(index);
             lstPreco.Items.RemoveAt(index);
-
-            sum2 -= txtPreco.Text[index];
+            total -= decimal.Parse(lstPreco.Items[index].ToString());
             
-            lblTotal.Text = $"Total: {sum2}";
+            lblTotal.Text = $"Total: {total}";
         }
     }
 }
