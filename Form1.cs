@@ -16,23 +16,32 @@ namespace Class3_WF
         {
             InitializeComponent();
         }
-           
-        decimal total = 0;
+        
         private void btnAdicionar_Click_1(object sender, EventArgs e)
         {
+            decimal total = 0;
             lstProduto.Items.Add(txtProduto.Text);
-            lstPreco.Items.Add(txtPreco.Text);
-            total += decimal.Parse(txtPreco.Text);
-            lblTotal.Text = $"Total R$: {total}";  
+            lstPreco.Items.Add(txtPreco.Text);          
+                        
+            for (int i = 0; i < lstPreco.Items.Count; i++)
+            {
+                total += Convert.ToDecimal(lstPreco.Items[i]);
+            }
+
+            lblTotal.Text = $"Total R$: {Convert.ToString(total)}";
         }
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            var index = lstProduto.SelectedIndex;
-            lstProduto.Items.RemoveAt(index);
-            lstPreco.Items.RemoveAt(index);
-            total -= decimal.Parse(lstPreco.Items[index].ToString());
-            
-            lblTotal.Text = $"Total: {total}";
+            decimal total = 0;
+            int ind = lstProduto.SelectedIndex;
+            lstProduto.Items.RemoveAt(ind);
+            lstPreco.Items.RemoveAt(ind);
+
+            for (int j = 0; j < lstPreco.Items.Count; j++)
+            {
+                total += Convert.ToDecimal(lstPreco.Items[j]);
+            }
+            lblTotal.Text = $"Total R$: {Convert.ToString(total)}";
         }
     }
 }
